@@ -16,9 +16,9 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 # Output
-<img src="screenshot/add_stock.png" width="300">
-<img src="screenshot/home_screen.png" width="300">
-<img src="screenshot/listing_stock.png" width="300">
-<img src="screenshot/login_screen.png" width="300">
-<img src="screenshot/signup_screen.png" width="300">
-<img src="screenshot/validation.png" width="300">
+<img src="screenshots/add_stock.png" width="300">
+<img src="screenshots/home_screen.png" width="300">
+<img src="screenshots/listing_stock.png" width="300">
+<img src="screenshots/login_screen.png" width="300">
+<img src="screenshots/signup_screen.png" width="300">
+<img src="screenshots/validation.png" width="300">
