@@ -1,7 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:stock_app/provider/theme_provider.dart';
 import 'package:stock_app/screens/dashboard.dart';
 import 'package:stock_app/screens/signup_screen.dart';
 
@@ -19,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SafeArea(
@@ -28,18 +31,20 @@ class _LoginScreenState extends State<LoginScreen> {
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: provider.isDarkMode ? Colors.black : Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Form(
               key: _globalKey,
               child: ListView(
                 children: [
-                  const Text('Login',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   TextFormField(
                     controller: emailController,
@@ -97,7 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           ElevatedButton(
                             onPressed: loginPressed,
-                            child: const Center(child: Text('Login')),
+                            child: const Center(
+                              child: Text('Login'),
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

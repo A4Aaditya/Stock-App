@@ -43,8 +43,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       if (response.isNotEmpty) {
         emit(ProductLoadedState(products: response));
       } else {
-        emit(ProductError(
-            message: 'Unable to loadProduct ! Something went wrong'));
+        emit(ProductError(message: 'Please create your first products'));
       }
     } catch (e) {
       emit(ProductError(message: e.toString()));

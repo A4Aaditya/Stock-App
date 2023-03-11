@@ -25,13 +25,13 @@ class _NewHomeState extends State<NewHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Home',
-          style: TextStyle(color: Colors.black),
-        ),
-        elevation: 0.0,
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     'Home',
+      //     style: TextStyle(color: Colors.black),
+      //   ),
+      //   elevation: 0.0,
+      // ),
       body: SafeArea(
         child: BlocConsumer<ProductBloc, ProductState>(
           listener: (context, state) {
@@ -56,7 +56,15 @@ class _NewHomeState extends State<NewHome> {
               );
             }
 
-            return const SizedBox();
+            return const Center(
+              child: Text(
+                'Create your first product',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
           },
         ),
       ),

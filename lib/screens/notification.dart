@@ -24,32 +24,52 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Notication'),
-      ),
-      body: ListView.builder(
-        itemCount: notifications.length,
-        itemBuilder: (context, index) {
-          final notification = notifications[index];
-          final buy = notification.quantity[0] == '+';
-          return Card(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: buy ? Colors.blue : Colors.red,
-                child: buy
-                    ? const Icon(
-                        Icons.download,
-                        color: Colors.white,
-                      )
-                    : const Icon(
-                        Icons.upload,
-                        color: Colors.white,
-                      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(
+                bottom: 10,
+                top: 20,
+                left: 20,
               ),
-              title: Text(notification.productName),
+              child: Text(
+                'Notifications',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          );
-        },
+            Expanded(
+              child: ListView.builder(
+                itemCount: notifications.length,
+                itemBuilder: (context, index) {
+                  final notification = notifications[index];
+                  final buy = notification.quantity[0] == '+';
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: buy ? Colors.blue : Colors.red,
+                        child: buy
+                            ? const Icon(
+                                Icons.download,
+                                color: Colors.white,
+                              )
+                            : const Icon(
+                                Icons.upload,
+                                color: Colors.white,
+                              ),
+                      ),
+                      title: Text(notification.productName),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

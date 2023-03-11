@@ -1,7 +1,9 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:stock_app/provider/theme_provider.dart';
 import 'package:stock_app/screens/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -21,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SafeArea(
@@ -32,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
               padding: const EdgeInsets.all(20),
               height: 550,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: provider.isDarkMode ? Colors.black : Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListView(

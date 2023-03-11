@@ -15,58 +15,73 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    const url =
+        'https://images.freeimages.com/images/large-previews/d41/bear-combat-2-1332988.jpg';
+    const name = 'Aditya Kumar Singh';
+    const website = 'wwww.A4Aditya.in';
+    const designation = 'Flutter Developer';
+    const email = 'aditya@gmail.com';
+    const phoneNumber = '1234567890';
     final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('Profile'),
-      ),
-      body: ListView(
-        children: [
-          Container(
-            width: double.maxFinite,
-            color: Colors.grey,
-            child: Profile(
-                imageUrl:
-                    'https://images.freeimages.com/images/large-previews/d41/bear-combat-2-1332988.jpg',
-                name: 'Aditya Kumar Singh',
-                website: 'wwww.A4Aditya.in',
-                designation: 'Flutter Developer',
-                email: 'aditya@gmail.com',
-                phone_number: '1234567890'),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                SwitchListTile(
-                  onChanged: (value) {
-                    provider.isDarkMode = value;
-                    provider.toggleTheme();
-                  },
-                  value: provider.isDarkMode,
-                  title: provider.isDarkMode
-                      ? const Text('Switch to Light Mode')
-                      : const Text('Switch to Dark Mode'),
-                  secondary: const Icon(Icons.dark_mode),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: provider.isDarkMode ? Colors.grey : Colors.cyan,
+              ),
+              child: Center(
+                child: Profile(
+                  imageUrl: url,
+                  name: name,
+                  website: website,
+                  designation: designation,
+                  email: email,
+                  phone_number: phoneNumber,
                 ),
-                ListTile(
-                  leading: const Icon(Icons.logout),
-                  title: const Text('Logout'),
-                  onTap: () {
-                    FirebaseAuth.instance.signOut();
-                    final route = MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    );
-                    Navigator.pushAndRemoveUntil(
-                        context, route, (route) => false);
-                    // Logout code
-                  },
-                ),
-              ],
+              ),
             ),
-          )
-        ],
+            Expanded(
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        SwitchListTile(
+                          onChanged: (value) {
+                            provider.isDarkMode = value;
+                            provider.toggleTheme();
+                          },
+                          value: provider.isDarkMode,
+                          title: provider.isDarkMode
+                              ? const Text('Switch to Light Mode')
+                              : const Text('Switch to Dark Mode'),
+                          secondary: const Icon(Icons.dark_mode),
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.logout),
+                          title: const Text('Logout'),
+                          onTap: () {
+                            FirebaseAuth.instance.signOut();
+                            final route = MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            );
+                            Navigator.pushAndRemoveUntil(
+                                context, route, (route) => false);
+                            // Logout code
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
