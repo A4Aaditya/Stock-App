@@ -37,37 +37,39 @@ class _NewAddStockScreenState extends State<NewAddStockScreen> {
         elevation: 0.0,
         title: Text(name),
       ),
-      body: Column(
-        children: [
-          ProductDetailTopSection(product: widget.product),
-          BlocConsumer<StockBloc, StockState>(
-            listener: (context, state) {
-              if (state is StockErrorState) {
-                final snackBar = customSnackBar(
-                  text: state.message,
-                  color: Colors.red,
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              } else if (state is StockAddedState) {
-                final snackBar = customSnackBar(
-                  text: 'Stock added successfully',
-                  color: Colors.green,
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-            },
-            builder: (context, state) {
-              if (state is StockFetchedState) {
-                return ProductDetailWidget(
-                  stockEntries: state.stockModelEntry,
-                  fetchStockEntry: fetchStockEntry,
-                );
-              }
+      body: SafeArea(
+        child: Column(
+          children: [
+            ProductDetailTopSection(product: widget.product),
+            BlocConsumer<StockBloc, StockState>(
+              listener: (context, state) {
+                if (state is StockErrorState) {
+                  final snackBar = customSnackBar(
+                    text: state.message,
+                    color: Colors.red,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else if (state is StockAddedState) {
+                  final snackBar = customSnackBar(
+                    text: 'Stock added successfully',
+                    color: Colors.green,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+              },
+              builder: (context, state) {
+                if (state is StockFetchedState) {
+                  return ProductDetailWidget(
+                    stockEntries: state.stockModelEntry,
+                    fetchStockEntry: fetchStockEntry,
+                  );
+                }
 
-              return const Text('NO Data to Show');
-            },
-          ),
-        ],
+                return const Center(child: Text('No Data'));
+              },
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: navigateToAddProductStock,

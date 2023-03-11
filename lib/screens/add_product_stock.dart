@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:stock_app/bloc/stock_bloc/stock_bloc.dart';
 import 'package:stock_app/bloc/stock_bloc/stock_event.dart';
 import 'package:stock_app/bloc/stock_bloc/stock_state.dart';
 import 'package:stock_app/models/new_product_model.dart';
+import 'package:stock_app/provider/theme_provider.dart';
 
 class AddProductStock extends StatefulWidget {
   final NewProductModel product;
@@ -24,6 +26,7 @@ class _AddProductStockState extends State<AddProductStock> {
   String? radioGroupValue;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -36,7 +39,7 @@ class _AddProductStockState extends State<AddProductStock> {
           width: double.maxFinite,
           height: 350,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: provider.isDarkMode ? Colors.black : Colors.white,
             borderRadius: BorderRadius.circular(12),
           ),
           child: ListView(

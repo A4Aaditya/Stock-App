@@ -127,6 +127,7 @@ class _NewHomeState extends State<NewHome> {
     final event = AddNewProductEvent(product: data);
     bloc.add(event);
     Navigator.pop(context);
+    productNameController.text = '';
   }
 
   /// get map of product
