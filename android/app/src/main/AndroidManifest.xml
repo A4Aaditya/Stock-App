@@ -2,7 +2,7 @@
     package="com.example.stock_app">
     <uses-permission android:name="android.permission.INTERNET" /> 
    <application
-        android:label="stock_app"
+        android:label="Inventory"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
